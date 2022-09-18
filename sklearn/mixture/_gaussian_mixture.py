@@ -750,6 +750,7 @@ class GaussianMixture(BaseMixture):
             Logarithm of the posterior probabilities (or responsibilities) of
             the point of each sample in X.
         """
+        log_resp = np.maximum(-45, log_resp)
         self.weights_, self.means_, self.covariances_ = _estimate_gaussian_parameters(
             X, np.exp(log_resp), self.reg_covar, self.covariance_type
         )
